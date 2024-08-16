@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <h1>SUSLL1k</h1>
+    <h2>Posts</h2>
+    <div class="conteiner">
+        {% for post in posts %}
+            <div class="box">
+                <h4><img src="{% static 'img/2692702.png' %}" class="logo">Susll1k</h4>
+                <img src="{{ post.image.url }}" class="img">
+                <p>{{ post.title }}</p>
+                <p><img src="{% static 'img/loving-heart-shape (1).png' %}" alt="" class="like">{{ post.count_like }}</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" name="text">
+                    <input type="hidden" value="{{ post.id }}" name="post_id">
+                    <button type="submit">Create</button>
+            
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
